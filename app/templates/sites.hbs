@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions?</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each site in model}}
+    {{#link-to 'site' site.id}}
+        <td>{{site.group.name}}</td>
+        <td>{{site.name}}</td>
+        <td>{{site.description}}</td>
+        <td></td>
+    {{/link-to}}
+    {{/each}}
+    </tbody>
+</table>

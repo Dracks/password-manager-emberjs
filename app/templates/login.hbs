@@ -1,0 +1,7 @@
+<form {{action authenticate on='submit'}}>
+  <label for="identification">Login</label>
+  {{view Ember.TextField value=username placeholder='Enter Login'}}
+  <label for="password">Password</label>
+  {{view Ember.TextField type='password' value=password placeholder='Enter Password'}}
+  <button {{action "login"}}>Login</button>
+</form>

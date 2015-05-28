@@ -1,0 +1,15 @@
+<div>
+    <label>Group:</label>
+    {{view "select" value="model.group"
+                optionLabelPath='content.name'
+                optionValuePath="content.id"
+                content=listGroups
+                prompt="Select group"
+                }}<br/>
+    <label>Name:</label>{{input type="text" value=model.name}}<br />
+    <label>Description:</label><br />{{textarea value=model.description}}<br />
+    <label>Site:</label>{{input type="text" value=model.url}}<br />
+    <label>User:</label>{{input type="text" value=model.user}}<br />
+    <label>Password:</label>{{input type="text" value=model.password}}<br />
+    <button {{action "save"}}>Save</button>
+</div>

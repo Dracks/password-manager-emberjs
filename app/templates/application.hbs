@@ -1,3 +1,10 @@
 <h2 id="title">Welcome to Ember.js</h2>
 
+{{#if loggedIn}}
+    <a {{action 'logout' }}>Logout</a>
+    {{#link-to 'sites'}}Sites{{/link-to}}
+{{else}}
+    {{#link-to 'login'}}Login{{/link-to}}
+{{/if}}
+
 {{outlet}}
