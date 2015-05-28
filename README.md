@@ -1,3 +1,6 @@
+# password-manager-emberjs
+The view with EmberJS for the project password-manager-django
+
 # View
 
 This README outlines the details of collaborating on this Ember application.
