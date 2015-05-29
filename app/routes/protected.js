@@ -11,11 +11,13 @@ var protectedRoute = Ember.Route.extend({
 		var application=this.controllerFor('application');
 
 		var hasLogged=application.get('loggedIn');
-		if (hasLogged) {
-			return;
-		} else {
-			this.goToLogin(transition);
-		}
+		return new Ember.RSVP.Promise(function(resolve) {
+			resolve(hasLogged);
+		}).then(function (value){
+			if (!hasLogged){
+				this.goToLogin(transition)
+			}
+		}.bind(this));
 	}
 });
 
