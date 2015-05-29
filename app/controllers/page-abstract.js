@@ -20,7 +20,7 @@ export default Ember.ArrayController.extend({
 		if (remainder){
 			pages++;
 		}
-		return pages
+		return pages;
 	}.property('totalItems', 'pageSize'),
 	lastPage: function (){
 		return this.get('numPages');
@@ -47,7 +47,7 @@ export default Ember.ArrayController.extend({
 			last=numPages;
 		}
 		var ret=[];
-		for (i=first; i<last; i++){
+		for (var i=first; i<last; i++){
 			var p={label: i+1, id:i, current: i==page};
 			ret.addObject(p)
 		}

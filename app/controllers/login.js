@@ -1,4 +1,6 @@
 
+import Ember from 'ember'
+
 var LoginController = Ember.Controller.extend({
     needs: 'application',
     previousTransition: null,
@@ -19,7 +21,7 @@ var LoginController = Ember.Controller.extend({
 
     actions: {
         login: function() {
-            delete localStorage.jwt
+            delete localStorage.jwt;
 
             Ember.$.post('http://127.0.0.1:8000/api-token/auth', {
 

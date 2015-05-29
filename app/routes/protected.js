@@ -1,4 +1,4 @@
-import Ember from "ember"
+import Ember from "ember";
 
 var protectedRoute = Ember.Route.extend({
 	goToLogin: function (previousTransition){
@@ -19,4 +19,4 @@ var protectedRoute = Ember.Route.extend({
 	}
 });
 
-export default protectedRoute
+export default protectedRoute;
