@@ -1,4 +1,4 @@
-import PageAbstractRoute from "./page-abstract";
+import PageAbstractRoute from "../page-abstract";
 
 var SitesRoute = PageAbstractRoute.extend({
 	model: function(params) {

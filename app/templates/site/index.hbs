@@ -1,21 +1,19 @@
 <button {{action "prevPage"}}> &lt; Previous</button><button {{action "nextPage"}}> Next &gt; </button>
-{{#link-to "site-new" tagName="button"}}New{{/link-to}}
+{{#link-to "site.new" tagName="button"}}New{{/link-to}}
 <table>
     <thead>
         <tr>
             <th>Group</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Actions?</th>
         </tr>
     </thead>
     <tbody>
     {{#each site in model}}
-    {{#link-to 'site' site.id tagName='tr'}}
+    {{#link-to 'site.edit' site.id tagName='tr'}}
         <td>{{site.group.name}}</td>
         <td>{{site.name}}</td>
         <td>{{site.description}}</td>
-        <td></td>
     {{/link-to}}
     {{/each}}
     </tbody>

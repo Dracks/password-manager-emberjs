@@ -15,7 +15,7 @@ var LoginController = Ember.Controller.extend({
 			previousTransition.retry();
 		} else {
 			// Default back to homepage
-			this.transitionToRoute('sites');
+			this.transitionToRoute('site');
 		}
 	},
 

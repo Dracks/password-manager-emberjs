@@ -1,6 +1,6 @@
-import ProtectedRoute from "./protected";
+import Ember from "ember";
 
-var SiteRoute = ProtectedRoute.extend({
+var SiteRoute = Ember.Route.extend({
     model: function(params) {
         return this.store.find('site', params.site_id);
     }
