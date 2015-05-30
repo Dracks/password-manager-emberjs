@@ -6,21 +6,21 @@ export default Ember.Controller.extend({
 		return info===undefined || info.expiration<new Date();
 	},
 	getJWT: function (){
-	    var jwt=localStorage.jwt;
-	    if (jwt===undefined){
-	        return undefined;
-	    } else {
-	        var ret=JSON.parse(localStorage.jwt);
-	        ret.expiration=new Date(ret.expiration);
-	        return ret;
-	    }
+		var jwt=localStorage.jwt;
+		if (jwt===undefined){
+			return undefined;
+		} else {
+			var ret=JSON.parse(localStorage.jwt);
+			ret.expiration=new Date(ret.expiration);
+			return ret;
+		}
 	},
 	loggedInWithToken: function (data){
-	    var loginTime=new Date();
-	    var delay=5*60*1000;
-	    window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), delay-5*1000);
-	    var expiration=new Date(loginTime.getTime()+delay)
-	    console.log("Ping: "+loginTime+" pong:"+expiration);
+		var loginTime=new Date();
+		var delay=data.life_time*1000;
+		window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), delay-5*1000);
+		var expiration=new Date(loginTime.getTime()+delay)
+		console.log("Ping: "+loginTime+" pong:"+expiration);
 		localStorage.jwt = JSON.stringify({ "token": data.token, "expiration":expiration});
 		this.set('loggedIn', true);
 	},
@@ -32,9 +32,9 @@ export default Ember.Controller.extend({
 		return request;
 	},
 	refreshTokenTimeoutCallback: function (){
-	    if (localStorage.jwt!==undefined){
-            this.refreshToken();
-        }
+		if (localStorage.jwt!==undefined){
+			this.refreshToken();
+		}
 	},
 	init: function (){
 		$.ajaxPrefilter(function(options, originalOptions, xhr) {
@@ -49,8 +49,8 @@ export default Ember.Controller.extend({
 			return new Ember.RSVP.Promise(function(resolve, reject){
 
 				Ember.$.post('http://127.0.0.1:8000/api-token/verify',{token:jwt.token}).then((function (){
-				    var elapse=jwt.expiration.getTime()-(new Date()).getTime()
-				    window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), elapse)
+					var elapse=jwt.expiration.getTime()-(new Date()).getTime()
+					window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), elapse)
 					resolve(true);
 				}.bind(this)),(function(){
 					this.set('loggedIn', false);
