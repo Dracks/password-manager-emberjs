@@ -14,7 +14,7 @@ var protectedRoute = Ember.Route.extend({
 		return new Ember.RSVP.Promise(function(resolve) {
 			resolve(hasLogged);
 		}).then(function (value){
-			if (!hasLogged){
+			if (!value){
 				this.goToLogin(transition)
 			}
 		}.bind(this));
