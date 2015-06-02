@@ -6,9 +6,6 @@ module.exports = function(environment) {
         environment: environment,
         baseURL: '/',
         locationType: 'auto',
-        contentSecurityPolicy: {
-            'connect-src': "localhost:8000 127.0.0.1:8000"
-        },
         EmberENV: {
             FEATURES: {
                 // Here you can enable experimental features on an ember canary build
@@ -19,6 +16,8 @@ module.exports = function(environment) {
         APP: {
             // Here you can pass flags/options to your application instance
             // when it is created
+            API_AUTH_NAMESPACE:'api-token',
+            API_NAMESPACE:'api'
         }
     };
 
@@ -28,8 +27,7 @@ module.exports = function(environment) {
         // ENV.APP.LOG_TRANSITIONS = true;
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
-        ENV.APP.API_HOST = 'http://localhost:8000';
-
+        ENV.APP.API_HOST = 'http://passwords.localhost';
     }
 
     if (environment === 'test') {
@@ -45,7 +43,12 @@ module.exports = function(environment) {
     }
 
     if (environment === 'production') {
+        ENV.baseURL='/~dracks/passwords/'
+        ENV.APP.API_HOST = 'http://passwords.localhost';
+    }
 
+    ENV.contentSecurityPolicy= {
+        'connect-src' : ENV.APP.API_HOST
     }
 
     return ENV;
