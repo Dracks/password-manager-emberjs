@@ -21,20 +21,12 @@ var LoginController = Ember.Controller.extend({
 
     actions: {
         login: function() {
-            delete localStorage.jwt;
-            var loginTime=new Date();
-
-            Ember.$.post('http://127.0.0.1:8000/api-token/auth', {
-
-                username: this.get('username'),
-                password: this.get('password')
-
-            }).then(function(data) {
-                this.get('controllers.application').loggedInWithToken(data);
+            var login_promise=this.get('controllers.application').login(this.get('username'), this.get('password'));
+            login_promise.then(function (){
                 this.loggedFunction();
-            }.bind(this), function() {
-            alert('Login failed');
-            });
+            }.bind(this), function (){
+                alert('Login failed');
+            }.bind(this))
         }
     }
 });

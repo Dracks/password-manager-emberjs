@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../config/environment'
 
 export default Ember.Controller.extend({
 	hasTokenExpired: function(){
@@ -15,6 +16,20 @@ export default Ember.Controller.extend({
 			return ret;
 		}
 	},
+	login: function (user, password){
+		delete localStorage.jwt;
+		var loginTime=new Date();
+
+		var promise=Ember.$.post(ENV.APP.API_HOST+'/'+ENV.APP.API_AUTH_NAMESPACE+'/auth', {
+
+			username: user,
+			password: password
+
+		}).then(function(data) {
+			this.loggedInWithToken(data);
+		}.bind(this));
+		return promise;
+	},
 	loggedInWithToken: function (data){
 		var loginTime=new Date();
 		var delay=data.life_time*1000;
@@ -25,7 +40,7 @@ export default Ember.Controller.extend({
 		this.set('loggedIn', true);
 	},
 	refreshToken: function (){
-		var request=Ember.$.post('http://127.0.0.1:8000/api-token/refresh', {token:this.getJWT().token})
+		var request=Ember.$.post(ENV.APP.API_HOST+'/'+ENV.APP.API_AUTH_NAMESPACE+'/refresh', {token:this.getJWT().token})
 		request.then(function (data){
 			this.loggedInWithToken(data);
 		}.bind(this));
@@ -48,7 +63,7 @@ export default Ember.Controller.extend({
 		if (!this.hasTokenExpired()){
 			return new Ember.RSVP.Promise(function(resolve, reject){
 
-				Ember.$.post('http://127.0.0.1:8000/api-token/verify',{token:jwt.token}).then((function (){
+				Ember.$.post(ENV.APP.API_HOST+'/'+ENV.APP.API_AUTH_NAMESPACE+'/verify',{token:jwt.token}).then((function (){
 					var elapse=jwt.expiration.getTime()-(new Date()).getTime()
 					window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), elapse)
 					resolve(true);
