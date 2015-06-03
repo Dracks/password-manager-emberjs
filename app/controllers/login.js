@@ -1,11 +1,12 @@
 
 import Ember from 'ember'
+//import Defaults from '../../../config/defaults'
 
 var LoginController = Ember.Controller.extend({
     needs: 'application',
     previousTransition: null,
-    username:"dracks",
-    password:'123456',
+    username:'',
+    password:'',
 
     loggedFunction: function (){
 		// Log the user in, then reattempt previous transition if it exists.
