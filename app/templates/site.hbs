@@ -1,0 +1,26 @@
+{{outlet}}
+<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="right">
+		<button {{action "prevPage"}} class='btn btn-default'> &lt; Previous</button>
+		<button {{action "nextPage"}} class='btn btn-default'> Next &gt; </button>
+	</div>
+	{{#link-to "site.new" tagName="button" class='btn btn-primary'}}New{{/link-to}}
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>Group</th>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+		</thead>
+		<tbody>
+		{{#each site in model}}
+			{{#link-to 'site.edit' site.id tagName='tr'}}
+				<td>{{site.group.name}}</td>
+				<td>{{site.name}}</td>
+				<td>{{site.description}}</td>
+			{{/link-to}}
+		{{/each}}
+		</tbody>
+	</table>
+</div>
