@@ -2,6 +2,8 @@ import Ember from 'ember';
 import ENV from '../config/environment'
 
 export default Ember.Controller.extend({
+	searchText:'',
+	searchResults: [],
 	hasTokenExpired: function(){
 		var info=this.get('jwt');
 		return info===null || info===undefined || info.expiration<new Date();
@@ -106,6 +108,18 @@ export default Ember.Controller.extend({
 			delete localStorage.jwt;
 			this.controllerFor('application').set('loggedIn', false);
 			this.transitionTo('index');
+		},
+		refreshSearch: function (){
+			var text=this.get('searchText');
+			if (text==null || text.length<2){
+				$('.dropdown-toggle').dropdown();
+			} else {
+				var promise = this.store.find('site',{search:text});
+				promise.then(function (list){
+					$('.dropdown-toggle').dropdown();
+					this.set('searchResults', list);
+				}.bind(this))
+			}
 		}
 	}
 });
