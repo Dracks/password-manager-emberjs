@@ -1,17 +1,17 @@
 <div class="col-md-4 col-sm-8 col-xs-12">
-	<label>Group:</label>
-	{{view "select" value="idGroup"
-				selection="model.group"
+	<label>{{t "site.group"}}:</label>
+	{{view "select" value=model.group
+				selection=model.group
 				optionLabelPath='content.name'
-				optionValuePath="content.id"
+				optionValuePath='content'
 				content=listGroups
 				prompt="Select group"
 				class="form-control"
 				}}<br/>
-	<label>Name:</label>{{input type="text" value=model.name class="form-control"}}<br />
-	<label>Description:</label><br />{{textarea value=model.description class="form-control"}}<br />
-	<label>Site:</label>{{input type="text" value=model.url class="form-control"}}<br />
-	<label>User:</label>{{input type="text" value=model.user class="form-control"}}<br />
-	<label>Password:</label>{{input type="text" value=model.password class="form-control"}}<br />
-	<button {{action "save"}} class="btn btn-primary">Save</button>
+	<label>{{t "site.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
+	<label>{{t "site.description"}}:</label><br />{{textarea value=model.description class="form-control"}}<br />
+	<label>{{t "site.url"}}:</label>{{input type="text" value=model.url class="form-control"}}<br />
+	<label>{{t "site.user"}}:</label>{{input type="text" value=model.user class="form-control"}}<br />
+	<label>{{t "site.password"}}:</label>{{input type="text" value=model.password class="form-control"}}<br />
+	<button {{action "save"}} class="btn btn-primary">{{t "edit.save"}}</button>
 </div>

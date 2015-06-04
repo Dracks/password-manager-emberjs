@@ -1,8 +1,12 @@
 import Ember from 'ember';
 import ENV from '../config/environment'
+import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Controller.extend({
 	searchText:'',
+	placeHolderSearchText: t('application.navigation.search',{}),
+	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
+	selectedLanguage: Ember.computed.alias('i18n.locale'),
 	searchResults: [],
 	hasTokenExpired: function(){
 		var info=this.get('jwt');

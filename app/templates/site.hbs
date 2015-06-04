@@ -1,16 +1,16 @@
 {{outlet}}
 <div class="col-md-4 col-sm-4 col-xs-12">
 	<div class="right">
-		<button {{action "prevPage"}} class='btn btn-default'> &lt; Previous</button>
-		<button {{action "nextPage"}} class='btn btn-default'> Next &gt; </button>
+		<button {{action "prevPage"}} class='btn btn-default'>{{t "list.pagination.previous"}}</button>
+		<button {{action "nextPage"}} class='btn btn-default'>{{t "list.pagination.next"}} </button>
 	</div>
-	{{#link-to "site.new" tagName="button" class='btn btn-primary'}}New{{/link-to}}
+	{{#link-to "site.new" tagName="button" class='btn btn-primary'}}{{t "site.create"}}{{/link-to}}
 	<table class="table table-striped">
 		<thead>
 		<tr>
-			<th>Group</th>
-			<th>Name</th>
-			<th>Description</th>
+			<th>{{t "site.group"}}</th>
+			<th>{{t "site.name"}}</th>
+			<th>{{t "site.description"}}</th>
 		</tr>
 		</thead>
 		<tbody>
