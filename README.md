@@ -1,5 +1,8 @@
-# password-manager-emberjs
-The view with EmberJS for the project password-manager-django
+# View for password manager using django
+View of [password manager using django](https://github.com/Dracks/password-manager-django) using EmberJS
+
+I made this, as a view to know how works emberjs and django, also It has the feature that be a little project to made
+tests about how work something of ember, for example try the drf plugin and localization plugin
 
 # View
 
@@ -15,6 +18,9 @@ You will need the following things properly installed on your computer.
 * [Bower](http://bower.io/)
 * [Ember CLI](http://www.ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
+
+Also is required to have installed and runing the password manager server
+https://github.com/Dracks/password-manager-django
 
 ## Installation
 
