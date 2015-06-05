@@ -4,6 +4,7 @@ export default Ember.Route.extend({
     queryParams: {
 		page: { refreshModel: true },
 		pageSize: { refreshModel:true },
+	    search: { refreshModel: true }
 	},
 	filterQuery: function (params){
 		var ret={page:1, page_size:10};
@@ -13,7 +14,10 @@ export default Ember.Route.extend({
 		if (params.page!=null){
 			ret.page=params.page;
 		}
+		if (params.search!=null && params.search!=''){
+			ret.search=params.search;
+		}
 
 		return ret;
-	},
+	}
 });

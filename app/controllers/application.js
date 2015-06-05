@@ -121,7 +121,8 @@ export default Ember.Controller.extend({
 			this.transitionTo('index');
 		},
 		goToSites: function (){
-
+			var text=this.get('searchText');
+			this.transitionToRoute('site', {queryParams:{search:text}})
 		}
 	}
 });

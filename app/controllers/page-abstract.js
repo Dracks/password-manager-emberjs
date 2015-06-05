@@ -1,10 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
-    queryParams:["page", "pageSize"],
+    queryParams:["page", "pageSize", "search"],
 
 	page:1,
 	pageSize:10,
+	search:'',
 	listPageSize:[10,25,50],
 	totalItems: Ember.computed.alias('model.meta.count'),
 
