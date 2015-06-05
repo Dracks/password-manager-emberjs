@@ -7,7 +7,14 @@ export default Ember.Controller.extend({
 	placeHolderSearchText: t('application.navigation.search',{}),
 	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
 	selectedLanguage: Ember.computed.alias('i18n.locale'),
-	searchResults: [],
+	hasSearch: function (){
+		var search=this.get('searchText');
+		return search!=null && search.length>2;
+	}.property('searchText'),
+	searchResults: function (){
+		var search=this.get('searchText');
+		return this.store.find('site',{search:search});
+	}.property('searchText'),
 	hasTokenExpired: function(){
 		var info=this.get('jwt');
 		return info===null || info===undefined || info.expiration<new Date();
@@ -113,17 +120,8 @@ export default Ember.Controller.extend({
 			this.controllerFor('application').set('loggedIn', false);
 			this.transitionTo('index');
 		},
-		refreshSearch: function (){
-			var text=this.get('searchText');
-			if (text==null || text.length<2){
-				$('.dropdown-toggle').dropdown();
-			} else {
-				var promise = this.store.find('site',{search:text});
-				promise.then(function (list){
-					$('.dropdown-toggle').dropdown();
-					this.set('searchResults', list);
-				}.bind(this))
-			}
+		goToSites: function (){
+
 		}
 	}
 });
