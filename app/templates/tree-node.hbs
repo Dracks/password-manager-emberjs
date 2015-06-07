@@ -1,7 +1,7 @@
-{{#if has_children}}
-	<li class="node">
+{{#link-to 'site' (query-params group=model.id)  bubbles=false tagName="li" class="node"}}
+	{{#if has_children}}
 		{{#if expanded}}
-			<button {{action "hide"}}>
+			<button {{action "hide" bubbles=false}}>
 				-
 			</button> {{model.name}} <ul class="tree">
 				{{#each child in model.children}}
@@ -9,13 +9,11 @@
 				{{/each}}
 			</ul>
 		{{else}}
-			<button {{action "expand"}}>
+			<button {{action "expand" bubbles=false}}>
 				+
 			</button>{{model.name}}
 		{{/if}}
-	</li>
-{{else}}
-	<li class="node">
+	{{else}}
 		<span>{{model.name}}</span>
-	</li>
-{{/if}}
+	{{/if}}
+{{/link-to}}
