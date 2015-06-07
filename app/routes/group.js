@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import ProtectedRoute from './protected';
 
-export default Ember.Route.extend({
+export default ProtectedRoute.extend({
+	model: function (){
+		return this.store.find('group', {parent:null});
+	}
 });

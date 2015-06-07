@@ -41,3 +41,30 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+ul.tree {
+    padding-left: 1em;
+    list-style: none;
+}
+
+
+ul.root-tree{
+    padding-left: 0px;
+}
+
+.tree > li.node ,
+.root-tree > li.node {
+    padding: 0.5em 0em;
+}
+
+.tree > .node > span{
+    padding-left: 1em;
+}
+
+.root-tree li.node button,
+.tree li.node button {
+    padding: 0px 4px;
+    width: 1em;
+    border: 0px;
+    background: #fff none;
+}

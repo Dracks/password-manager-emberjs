@@ -29,6 +29,9 @@ export default {
 		password:'Password',
 		button: 'Login'
 	},
+	group:{
+		root: "All"
+	},
 	site:{
 		create:'New',
 		group: 'Group',

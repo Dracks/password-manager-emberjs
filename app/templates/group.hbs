@@ -1,1 +1,21 @@
+<div class="col-ld-4 col-sm-4 col-xs-12">
+
+	<div class="right">
+		<button {{action "prevPage"}} class='btn btn-default'>{{t "list.pagination.previous"}}</button>
+		<button {{action "nextPage"}} class='btn btn-default'>{{t "list.pagination.next"}} </button>
+	</div>
+	{{#link-to "site.new" tagName="button" class='btn btn-primary'}}{{t "site.create"}}{{/link-to}}
+
+	<ul class="root-tree tree">
+		<li class="node">
+			<b>{{t "group.root"}}</b>
+			<ul class="tree">
+				{{#each group in model}}
+					{{render "tree-node" group}}
+				{{/each}}
+			</ul>
+		</li>
+	</ul>
+
+</div>
 {{outlet}}

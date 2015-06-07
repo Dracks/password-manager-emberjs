@@ -1,0 +1,21 @@
+{{#if has_children}}
+	<li class="node">
+		{{#if expanded}}
+			<button {{action "hide"}}>
+				-
+			</button> {{model.name}} <ul class="tree">
+				{{#each child in model.children}}
+					{{render "tree-node" child}}
+				{{/each}}
+			</ul>
+		{{else}}
+			<button {{action "expand"}}>
+				+
+			</button>{{model.name}}
+		{{/if}}
+	</li>
+{{else}}
+	<li class="node">
+		<span>{{model.name}}</span>
+	</li>
+{{/if}}
