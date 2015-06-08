@@ -4,7 +4,7 @@ import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Controller.extend({
 	searchText:'',
-	placeHolderSearchText: t('application.navigation.search',{}),
+	placeHolderSearchText: '',
 	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
 	selectedLanguage: Ember.computed.alias('i18n.locale'),
 	hasSearch: function (){
@@ -85,6 +85,7 @@ export default Ember.Controller.extend({
 				return xhr.setRequestHeader('Authorization', 'JWT '+this.get('jwt').token);
 			}
 		}.bind(this));
+		this.set('placeHolderSearchText', t('application.navigation.search',{}));
 	},
 	loggedIn: function (){
 		var jwt=this.get('jwt');

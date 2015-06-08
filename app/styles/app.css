@@ -54,17 +54,22 @@ ul.root-tree{
 
 .tree > li.node ,
 .root-tree > li.node {
-    padding: 0.5em 0em;
+    padding: 6px 0em;
 }
 
 .tree > .node > span{
     padding-left: 1em;
 }
 
-.root-tree li.node button,
-.tree li.node button {
+.tree li.node button.tree {
     padding: 0px 4px;
     width: 1em;
     border: 0px;
     background: #fff none;
+}
+
+.tree > li.node > a.edit,
+.tree > li.node > button.edit{
+    right:0px;
+    position:absolute;
 }

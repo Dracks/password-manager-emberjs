@@ -1,19 +1,20 @@
 {{#link-to 'site' (query-params group=model.id)  bubbles=false tagName="li" class="node"}}
 	{{#if has_children}}
+
+		<button {{action "expand" bubbles=false}} class="tree">
+			{{#if expanded}}-{{else}}+{{/if}}
+		</button> {{model.name}}
+		{{#link-to "group.edit" model bubbles=false class="btn btn-default edit"}}{{t "application.actions.edit"}}{{/link-to}}
 		{{#if expanded}}
-			<button {{action "hide" bubbles=false}}>
-				-
-			</button> {{model.name}} <ul class="tree">
+			<ul class="tree">
 				{{#each child in model.children}}
 					{{render "tree-node" child}}
 				{{/each}}
 			</ul>
-		{{else}}
-			<button {{action "expand" bubbles=false}}>
-				+
-			</button>{{model.name}}
 		{{/if}}
 	{{else}}
 		<span>{{model.name}}</span>
+		{{#link-to "group.edit" model bubbles=false class="btn btn-default edit"}}{{t "application.actions.edit"}}{{/link-to}}
 	{{/if}}
+
 {{/link-to}}

@@ -1,1 +1,13 @@
-{{outlet}}
+<div class="col-md-4 col-sm-8 col-xs-12">
+	<label>{{t "application.names.parent"}}:</label>
+	{{view "select" value=model.parent
+			selection=model.parent
+			optionLabelPath='content.path_name'
+			optionValuePath='content'
+			content=listGroupsFiltered
+			prompt="Select group"
+			class="form-control"
+	}}<br/>
+	<label>{{t "site.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
+	<button {{action "save"}} class="btn btn-primary">{{t "application.actions.save"}}</button>
+</div>

@@ -12,6 +12,11 @@ export default {
 			search:'Search',
 			login:'Login',
 			logout:'Logout'
+		},
+		actions: {
+			edit: "Edit",
+			save: "Save",
+			delete: "Delete"
 		}
 	},
 	list:{
@@ -19,9 +24,6 @@ export default {
 			next:'Next >',
 			previous: '< Previous'
 		}
-	},
-	edit:{
-		save:"Save"
 	},
 	login:{
 		title:'Please sign in',

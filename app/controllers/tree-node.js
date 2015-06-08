@@ -7,10 +7,8 @@ export default Ember.Controller.extend({
 	expanded: false,
 	actions: {
 		expand: function(){
-			this.set('expanded', true);
-		},
-		hide: function (){
-			this.set('expanded', false);
+			var expanded=this.get('expanded');
+			this.set('expanded', !expanded);
 		}
 	}
 });

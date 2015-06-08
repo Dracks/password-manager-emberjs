@@ -2,7 +2,7 @@
 	<label>{{t "site.group"}}:</label>
 	{{view "select" value=model.group
 				selection=model.group
-				optionLabelPath='content.name'
+				optionLabelPath='content.path_name'
 				optionValuePath='content'
 				content=listGroups
 				prompt="Select group"
@@ -13,5 +13,5 @@
 	<label>{{t "site.url"}}:</label>{{input type="text" value=model.url class="form-control"}}<br />
 	<label>{{t "site.user"}}:</label>{{input type="text" value=model.user class="form-control"}}<br />
 	<label>{{t "site.password"}}:</label>{{input type="text" value=model.password class="form-control"}}<br />
-	<button {{action "save"}} class="btn btn-primary">{{t "edit.save"}}</button>
+	<button {{action "save"}} class="btn btn-primary">{{t "application.actions.save"}}</button>
 </div>
