@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ENV from '../config/environment'
+import ENV from '../config/environment';
 import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Controller.extend({
@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
 		var info=null;
 		if (token!==null && expiration!==null){
 			info={"token": token, "expiration":expiration};
-			localStorage.jwt=JSON.stringify(info)
+			localStorage.jwt=JSON.stringify(info);
 		} else {
 			localStorage.jwt=null;
 		}
@@ -43,7 +43,6 @@ export default Ember.Controller.extend({
 	},
 	login: function (user, password){
 		delete localStorage.jwt;
-		var loginTime=new Date();
 
 		var promise=Ember.$.post(ENV.APP.API_HOST+'/'+ENV.APP.API_AUTH_NAMESPACE+'/auth', {
 
@@ -68,7 +67,7 @@ export default Ember.Controller.extend({
 		request.then(function (data){
 			this.loggedInWithToken(data);
 		}.bind(this), function (){
-			this.setJWT(null)
+			this.setJWT(null);
 		}.bind(this));
 		return request;
 	},
@@ -80,7 +79,7 @@ export default Ember.Controller.extend({
 		}
 	},
 	init: function (){
-		$.ajaxPrefilter(function(options, originalOptions, xhr) {
+		Ember.$.ajaxPrefilter(function(options, originalOptions, xhr) {
 			var jwt=this.get('jwt');
 			if (jwt!==null && jwt !==undefined && jwt.expiration>new Date()){
 				return xhr.setRequestHeader('Authorization', 'JWT '+this.get('jwt').token);
@@ -90,7 +89,7 @@ export default Ember.Controller.extend({
 	loggedIn: function (){
 		var jwt=this.get('jwt');
 		if (!this.get('hasTokenExpired')){
-			return new Ember.RSVP.Promise(function(resolve, reject){
+			return new Ember.RSVP.Promise(function(resolve){
 
 				Ember.$.post(ENV.APP.API_HOST+'/'+ENV.APP.API_AUTH_NAMESPACE+'/verify',{token:jwt.token}).then((function (){
 					var elapse=jwt.expiration.getTime()-(new Date()).getTime();
@@ -106,9 +105,9 @@ export default Ember.Controller.extend({
 		} else {
 			return new Ember.RSVP.Promise(function (resolve){
 				this.refreshToken().then(function (){
-					resolve(true)
+					resolve(true);
 				}, function (){
-					resolve(false)
+					resolve(false);
 				});
 			}.bind(this));
 		}
@@ -122,7 +121,7 @@ export default Ember.Controller.extend({
 		},
 		goToSites: function (){
 			var text=this.get('searchText');
-			this.transitionToRoute('site', {queryParams:{search:text}})
+			this.transitionToRoute('site', {queryParams:{search:text}});
 		}
 	}
 });

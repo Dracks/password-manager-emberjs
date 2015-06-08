@@ -15,7 +15,7 @@ var protectedRoute = Ember.Route.extend({
 			resolve(hasLogged);
 		}).then(function (value){
 			if (!value){
-				this.goToLogin(transition)
+				this.goToLogin(transition);
 			}
 		}.bind(this));
 	}

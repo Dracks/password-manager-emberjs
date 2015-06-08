@@ -41,4 +41,4 @@ export default {
 		password: 'Password',
 		url: 'Url'
 	}
-}
+};

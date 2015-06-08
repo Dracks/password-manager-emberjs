@@ -38,4 +38,4 @@ export default {
 		password: 'Contraseña',
 		url: 'Dirección'
 	}
-}
+};

@@ -6,7 +6,7 @@ var SitesRoute = PageAbstractRoute.extend({
 	},
 	model: function(params) {
 		var query=this.filterQuery(params);
-		if (params.group!=null && params.group!=''){
+		if (params.group!==null && params.group!==undefined && params.group!==''){
 			query.group=params.group;
 		}
 		return this.store.find('site', query);

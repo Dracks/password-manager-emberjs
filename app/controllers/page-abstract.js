@@ -10,7 +10,7 @@ export default Ember.ArrayController.extend({
 	totalItems: Ember.computed.alias('model.meta.count'),
 
 	isFirst: function (){
-		return this.page==1;
+		return this.page===1;
 	}.property("page"),
 
 	numPages: function (){
@@ -49,8 +49,8 @@ export default Ember.ArrayController.extend({
 		}
 		var ret=[];
 		for (var i=first; i<last; i++){
-			var p={label: i+1, id:i, current: i==page};
-			ret.addObject(p)
+			var p={label: i+1, id:i, current: i===page};
+			ret.addObject(p);
 		}
 		return ret;
 	},

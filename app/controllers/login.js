@@ -1,5 +1,5 @@
 
-import Ember from 'ember'
+import Ember from 'ember';
 //import Defaults from '../../../config/defaults'
 
 var LoginController = Ember.Controller.extend({
@@ -27,7 +27,7 @@ var LoginController = Ember.Controller.extend({
                 this.loggedFunction();
             }.bind(this), function (){
                 alert('Login failed');
-            }.bind(this))
+            }.bind(this));
         }
     }
 });
