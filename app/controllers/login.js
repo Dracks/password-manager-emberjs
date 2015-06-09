@@ -8,6 +8,11 @@ var LoginController = Ember.Controller.extend({
 	username:'',
 	password:'',
 
+	errorMessage: '',
+	hasError: function (){
+		return this.get('errorMessage')!='';
+	}.property('errorMessage'),
+
 
 	loggedFunction: function (){
 		// Log the user in, then reattempt previous transition if it exists.
@@ -26,9 +31,18 @@ var LoginController = Ember.Controller.extend({
 			var login_promise=this.get('controllers.application').login(this.get('username'), this.get('password'));
 			login_promise.then(function (){
 				this.loggedFunction();
-			}.bind(this), function (){
-				alert('Login failed');
+			}.bind(this), function (e){
+				if (e.responseText!=''){
+					this.set('errorMessage', e.responseText);
+				} else {
+					this.set('errorMessage', "Comunication error");
+				}
+
+				//alert('Login failed');
 			}.bind(this));
+		},
+		hideError: function (){
+			this.set('errorMessage', "");
 		}
 	}
 });

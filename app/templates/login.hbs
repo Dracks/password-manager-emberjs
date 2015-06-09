@@ -3,6 +3,13 @@
 
 	<form class="form-signin">
 		<h2 class="form-signin-heading">{{t "login.title"}}</h2>
+		<div {{bind-attr class=":alert :alert-danger :alert-dismissible :message-box hasError:in"}}>
+			<button type="button" class="close" aria-label="Close" {{action "hideError"}}>
+				<span aria-hidden="true">&times;</span>
+			</button>
+			{{errorMessage}}
+		</div>
+
 		<label for="identification">{{t "login.username"}}:</label>
 		{{view Ember.TextField value=username class="form-control" placeholder='User'}}
 		<label for="password">{{t "login.password"}}:</label>
