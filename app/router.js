@@ -7,23 +7,9 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
 	this.resource('login', {path:'/login'});
-	/*this.resource('protected', {path: '/protected'}, function (){
-		this.route('group', function() {
-			this.route('new');
-			this.route('edit', {path: '/:group_id'}, function (){
-				this.resource('site', function (){
-					this.route('edit', {path: '/:site_id'});
-					this.route('new', {path:'/new'});
-				});
-			});
-		});
-		this.resource('site', function (){
-			this.route('edit', {path: '/:site_id'});
-			this.route('new', {path:'/new'});
-		});
-	});*/
 	this.resource('group', {path: '/group'}, function (){
 		this.route('edit', {path:'/:group_id'});
+		this.route('new', {path:'/new'});
 		this.resource('site', function (){
 			this.route('edit', {path: '/:site_id'});
 			this.route('new', {path:'/new'});
