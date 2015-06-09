@@ -5,6 +5,7 @@ import { translationMacro as t } from "ember-i18n";
 export default Ember.Controller.extend({
 	searchText:'',
 	placeHolderSearchText: '',
+	timeOut: null,
 	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
 	selectedLanguage: Ember.computed.alias('i18n.locale'),
 	hasSearch: function (){
@@ -57,7 +58,11 @@ export default Ember.Controller.extend({
 	loggedInWithToken: function (data){
 		var loginTime=new Date();
 		var delay=data.life_time*1000;
-		window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), delay-5*1000);
+		var timeOut=this.get('timeOut');
+		if (timeOut!==null) {
+			timeOut=window.setTimeout(this.refreshTokenTimeoutCallback.bind(this), delay - 5 * 1000);
+			this.set('timeOut', timeOut);
+		}
 		var expiration=new Date(loginTime.getTime()+delay);
 		this.setJWT(data.token, expiration);
 		console.log("Ping: "+loginTime+" pong:"+expiration);
