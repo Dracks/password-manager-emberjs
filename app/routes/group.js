@@ -16,7 +16,7 @@ export default ProtectedRoute.extend({
 					data=callPage(next);
 					data.then(resolveCallback, function (e){
 						reject(e);
-					})
+					});
 				} else {
 					resolve(totalData);
 				}

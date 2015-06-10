@@ -9,13 +9,14 @@ export default Ember.Controller.extend({
 		var pending=[model];
 		var filter=[];
 		var list=this.get('listGroups');
+		var addChildToPending= function (child){
+			pending.push(child);
+		};
 
 		while (pending.length>0){
 			var fetch=pending.shift();
 			filter.push(fetch.get('id'));
-			fetch.get('children').forEach(function (child){
-				pending.push(child);
-			});
+			fetch.get('children').forEach(addChildToPending);
 		}
 		return list.filter(function(group){
 			return !(filter.contains(group.get('id')));
