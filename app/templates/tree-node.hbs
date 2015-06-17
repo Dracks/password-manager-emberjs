@@ -2,7 +2,11 @@
 	{{#if has_children}}
 
 		<button {{action "expand" bubbles=false}} class="tree">
-			{{#if expanded}}-{{else}}+{{/if}}
+			{{#if expanded}}
+				<span class="glyphicon glyphicon-chevron-down"></span>
+			{{else}}
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			{{/if}}
 		</button> {{model.name}}
 		{{#link-to "group.edit" model bubbles=false class="btn btn-default edit"}}{{t "application.actions.edit"}}{{/link-to}}
 		{{#if expanded}}

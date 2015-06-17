@@ -73,12 +73,12 @@ ul.root-tree{
 }
 
 .tree > .node > span{
-    padding-left: 1em;
+    padding-left: 1.5em;
 }
 
-.tree li.node button.tree {
+.tree > li.node > button.tree {
     padding: 0px 4px;
-    width: 1em;
+    width: 1.1em;
     border: 0px;
     background: #fff none;
 }
