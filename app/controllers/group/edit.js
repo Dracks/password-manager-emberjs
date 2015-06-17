@@ -21,9 +21,11 @@ export default Ember.Controller.extend({
 		return list.filter(function(group){
 			return !(filter.contains(group.get('id')));
 		});
-	}.property('listGroups.@each.id', 'model.id'),
+	}.property('listGroups.content', 'model.id'),
+	parent: null,
 	actions: {
 		save: function (){
+			this.set('model.parent', this.get('parent'));
 			this.get('model').save();
 		}
 	}

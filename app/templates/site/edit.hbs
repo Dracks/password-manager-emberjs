@@ -1,7 +1,7 @@
 <div class="col-md-4 col-sm-8 col-xs-12">
 	<label>{{t "site.group"}}:</label>
-	{{view "select" value=model.group
-				selection=model.group
+	{{view "select" value=selectedGroup
+				selection=group
 				optionLabelPath='content.path_name'
 				optionValuePath='content'
 				content=listGroups
