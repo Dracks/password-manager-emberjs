@@ -8,7 +8,7 @@ var protectedRoute = Ember.Route.extend({
 	},
 	beforeModel: function(transition) {
 
-		var application=this.controllerFor('application');
+		var application=this.controllerFor('user-session');
 
 		var hasLogged=application.get('loggedIn');
 		return new Ember.RSVP.Promise(function(resolve) {

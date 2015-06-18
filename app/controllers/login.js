@@ -3,7 +3,7 @@ import Ember from 'ember';
 //import Defaults from '../../../config/defaults'
 
 var LoginController = Ember.Controller.extend({
-	needs: 'application',
+	needs: 'user-session',
 	previousTransition: null,
 	i18n: Ember.inject.service(),
 	username:'',
@@ -37,7 +37,7 @@ var LoginController = Ember.Controller.extend({
 			var username=this.get('username');
 			var password=this.get('password');
 			if (username.length>0 && password.length>0) {
-				var login_promise = this.get('controllers.application').login(username, password);
+				var login_promise = this.get('controllers.user-session').login(username, password);
 				login_promise.then(function () {
 					this.loggedFunction();
 				}.bind(this), function (e) {
