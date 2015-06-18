@@ -1,4 +1,7 @@
 <div class="col-md-4 col-sm-8 col-xs-12">
+	{{#feedback-message isShowed=message.show timer=message.timer type=message.type hasCloseButton=false}}
+		{{message.text}}
+	{{/feedback-message}}
 	<label>{{t "application.names.parent"}}:</label>
 
 		{{view "select"
@@ -12,6 +15,6 @@
 		}}
 
 		<br/>
-	<label>{{t "site.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
+	<label>{{t "application.names.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
 	<button {{action "save"}} class="btn btn-primary">{{t "application.actions.save"}}</button>
 </div>

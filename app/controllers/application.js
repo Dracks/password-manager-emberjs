@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
 	searchText:'',
 	placeHolderSearchText: '',
 	timeOut: null,
+	i18n: Ember.inject.service(),
 	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
 	selectedLanguage: Ember.computed.alias('i18n.locale'),
 	hasSearch: function (){

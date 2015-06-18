@@ -46,13 +46,13 @@ module.exports = function(environment) {
 	}
 
 	if (environment === 'production') {
-		ENV.baseURL='/~dracks/passwords/'
+		ENV.baseURL='/~dracks/passwords/';
 		ENV.APP.API_HOST = 'http://passwords.localhost';
 	}
 
 	ENV.contentSecurityPolicy= {
 		'connect-src' : ENV.APP.API_HOST
-	}
+	};
 
 	return ENV;
 };

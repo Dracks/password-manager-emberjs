@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+	i18n: Ember.inject.service(),
 	listGroups: function (){
 		return this.store.find('group');
 	}.property(),
@@ -23,10 +24,38 @@ export default Ember.Controller.extend({
 		});
 	}.property('listGroups.content', 'model.id'),
 	parent: null,
+	message: Ember.create({
+		show:false,
+		timer: 0,
+		type: "info",
+		text: ""
+	}),
 	actions: {
 		save: function (){
+			this.set('message', {
+				show:false,
+				timer: null,
+				type: "error",
+				text: ""
+			});
 			this.set('model.parent', this.get('parent'));
-			this.get('model').save();
+			var promise=this.get('model').save();
+			promise.then(function (){
+				this.set('message', Ember.create({
+					show: true,
+					timer: 10,
+					type: "info",
+					text: this.get('i18n').t("group.messages.save-ok")
+				}));
+			}.bind(this), function (err){
+				console.log(err);
+				this.set('message', {
+					show:true,
+					timer: null,
+					type: "error",
+					text: err
+				});
+			}.bind(this))
 		}
 	}
 });

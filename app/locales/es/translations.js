@@ -12,6 +12,15 @@ export default {
 			search:'Buscar',
 			login:'Acceder',
 			logout:'Salir'
+		},
+		actions: {
+			edit: "Editar",
+			save: "Guardar",
+			delete: "Borrar"
+		},
+		names: {
+			parent: "Padre",
+			name: "Nombre"
 		}
 	},
 	list:{
@@ -29,6 +38,12 @@ export default {
 		password:'Contraseña',
 		button: 'Acceder'
 	},
+	group: {
+		root: "All",
+		messages: {
+			"save-ok":"El grupo se ha guardado"
+		}
+	},
 	site:{
 		create:'Nuevo',
 		group: 'Grupo',
@@ -36,6 +51,9 @@ export default {
 		description: 'Descripción',
 		user: 'Usuario',
 		password: 'Contraseña',
-		url: 'Dirección'
+		url: 'Dirección',
+		messages: {
+			"save-ok":"El sitio se ha guardado"
+		}
 	}
 };

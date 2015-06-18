@@ -17,6 +17,10 @@ export default {
 			edit: "Edit",
 			save: "Save",
 			delete: "Delete"
+		},
+		names: {
+			parent: "Parent",
+			name: "Name"
 		}
 	},
 	list:{
@@ -32,7 +36,10 @@ export default {
 		button: 'Login'
 	},
 	group:{
-		root: "All"
+		root: "All",
+		messages: {
+			"save-ok":"The group has been saved"
+		}
 	},
 	site:{
 		create:'New',
@@ -41,6 +48,9 @@ export default {
 		description: 'Description',
 		user: 'User',
 		password: 'Password',
-		url: 'Url'
+		url: 'Url',
+		messages: {
+			"save-ok":"The site has been saved"
+		}
 	}
 };
