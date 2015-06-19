@@ -9,9 +9,16 @@ export default Ember.Controller.extend({
 		type: "info",
 		text: ""
 	},
-	listGroups: function (){
-		return this.store.find('group');
-	}.property(),
+	init: function (){
+		this.store.find('group').then(function (data){
+			this.set('listGroups', data);
+		}.bind(this));
+	},
+	observesGroup: function (){
+		console.log('observesGroup');
+		this.set('selectedGroup', this.get('group'));
+	}.observes('model.group.id'),
+	listGroups: [],
 	group: function (){
 		var groupId=this.get('model.group.id');
 		var listGroups=this.get('listGroups');
@@ -19,7 +26,7 @@ export default Ember.Controller.extend({
 			return e.get('id')==groupId
 		});
 		return ret;
-	}.property('model.group', 'listGroups.content'),
+	}.property('model.group.id', 'listGroups.content'),
 	selectedGroup: null,
 	actions: {
 		save: function (){
