@@ -3,9 +3,9 @@ import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Controller.extend({
 	needs:['UserSession'],
+	loggedIn: Ember.computed.alias('controllers.UserSession.loggedIn'),
 	searchText:'',
 	placeHolderSearchText: '',
-	timeOut: null,
 	i18n: Ember.inject.service(),
 	listLanguages: [{id:'en', name:'English'}, {id:'es', name:'Español'}],
 	selectedLanguage: Ember.computed.alias('i18n.locale'),
