@@ -59,6 +59,7 @@ export default Ember.Controller.extend({
 	},
 	refreshTokenTimeoutCallback: function (){
 		if (localStorage.jwt!==undefined){
+			this.set('timeOut', null);
 			this.refreshToken().fail(function (){
 				this.transitionTo('login');
 			}.bind(this));
