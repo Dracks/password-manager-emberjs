@@ -1,6 +1,9 @@
 {{#link-to 'site' (query-params group=model.id)  bubbles=false tagName="li" class="node"}}
+	<div class="actions">
+		{{#link-to "group.edit" model bubbles=false class="text-primary edit"}}<span class="glyphicon glyphicon-pencil"></span>{{/link-to}}
+		<button {{action "delete" model bubbles=false}} class="text-danger edit"><span class="glyphicon glyphicon-remove"></span></button>
+	</div>
 	{{#if has_children}}
-
 		<button {{action "expand" bubbles=false}} class="tree">
 			{{#if expanded}}
 				<span class="glyphicon glyphicon-chevron-down"></span>
@@ -8,7 +11,6 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 			{{/if}}
 		</button> {{model.name}}
-		{{#link-to "group.edit" model bubbles=false class="btn btn-default edit"}}{{t "application.actions.edit"}}{{/link-to}}
 		{{#if expanded}}
 			<ul class="tree">
 				{{#each child in model.children}}
@@ -18,7 +20,6 @@
 		{{/if}}
 	{{else}}
 		<span>{{model.name}}</span>
-		{{#link-to "group.edit" model bubbles=false class="btn btn-default edit"}}{{t "application.actions.edit"}}{{/link-to}}
 	{{/if}}
 
 {{/link-to}}

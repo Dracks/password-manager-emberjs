@@ -83,8 +83,14 @@ ul.root-tree{
     background: #fff none;
 }
 
-.tree > li.node > a.edit,
-.tree > li.node > button.edit{
+.tree > li.node > div.actions{
     right:0px;
     position:absolute;
+}
+.tree > li.node > div.actions > a.edit,
+.tree > li.node > div.actions > button.edit{
+    padding: 0px 4px;
+    width: 1.1em;
+    border: 0px;
+    background: #fff none;
 }
