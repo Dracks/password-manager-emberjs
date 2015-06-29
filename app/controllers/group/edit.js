@@ -21,9 +21,15 @@ export default Ember.Controller.extend({
 		}
 		return list.filter(function(group){
 			return !(filter.contains(group.get('id')));
-		});
+		}).sortBy('path_name');
 	}.property('listGroups.content', 'model.id'),
 	parent: null,
+	observesParent: function (){
+		this.set('parent', this.get('model.parent'));
+	}.observes('model.parent'),
+	parentId: function (){
+		return this.get('model.parent.id');
+	}.property('model.parent.id'),
 	message: Ember.create({
 		show:false,
 		timer: 0,
@@ -38,7 +44,11 @@ export default Ember.Controller.extend({
 				type: "error",
 				text: ""
 			});
-			this.set('model.parent', this.get('parent'));
+			var parentId=this.get('parentId');
+			var parent=this.get('listGroupsFiltered').find(function (e){
+				return e.get('id')==parentId;
+			});
+			this.set('model.parent', parent);
 			var promise=this.get('model').save();
 			promise.then(function (){
 				this.set('message', Ember.create({

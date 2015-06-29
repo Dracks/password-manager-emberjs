@@ -3,14 +3,14 @@
 	{{#link-to "group.new" tagName="button" class='btn btn-primary'}}{{t "site.create"}}{{/link-to}}
 
 	<ul class="root-tree tree">
-		<li class="node">
+		{{#link-to 'site'  bubbles=false tagName="li" class="node"}}
 			<b>{{t "group.root"}}</b>
 			<ul class="tree">
 				{{#each group in model}}
 					{{render "tree-node" group}}
 				{{/each}}
 			</ul>
-		</li>
+		{{/link-to}}
 	</ul>
 
 </div>

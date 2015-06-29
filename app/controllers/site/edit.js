@@ -19,6 +19,9 @@ export default Ember.Controller.extend({
 		this.set('selectedGroup', this.get('group'));
 	}.observes('model.group.id'),
 	listGroups: [],
+	listGroupsSorted: function (){
+		return this.get('listGroups').sortBy('path_name');
+	}.property('listGroups'),
 	group: function (){
 		var groupId=this.get('model.group.id');
 		var listGroups=this.get('listGroups');

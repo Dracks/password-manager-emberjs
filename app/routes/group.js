@@ -14,7 +14,7 @@ export default ProtectedRoute.extend({
 				var next=data.get('content.meta.next');
 				if (next!==null){
 					data=callPage(next);
-					data.then(resolveCallback, function (e){
+					data.then(resolveCallback.bind(this), function (e){
 						reject(e);
 					});
 				} else {
@@ -22,7 +22,7 @@ export default ProtectedRoute.extend({
 				}
 			};
 			data=callPage(1);
-			data.then(resolveCallback, function (e){
+			data.then(resolveCallback.bind(this), function (e){
 				reject(e);
 			});
 		}.bind(this));

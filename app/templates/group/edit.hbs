@@ -5,10 +5,10 @@
 	<label>{{t "application.names.parent"}}:</label>
 
 		{{view "select"
-			selection=model.parent
-			value=parent
+			selection=parent
+			value=parentId
 			optionLabelPath='content.path_name'
-			optionValuePath='content'
+			optionValuePath='content.id'
 			content=listGroupsFiltered
 			prompt="Select group"
 			class="form-control"
