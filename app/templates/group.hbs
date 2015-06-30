@@ -1,6 +1,10 @@
-<div class="col-ld-4 col-sm-4 col-xs-12">
 
+<div class="col-ld-4 col-sm-4 col-xs-12">
 	{{#link-to "group.new" tagName="button" class='btn btn-primary'}}{{t "site.create"}}{{/link-to}}
+
+	{{#feedback-message isShowed=message.show timer=null type=message.type hasCloseButton=false}}
+		{{message.text}}
+	{{/feedback-message}}
 
 	<ul class="root-tree tree">
 		{{#link-to 'site'  bubbles=false tagName="li" class="node"}}

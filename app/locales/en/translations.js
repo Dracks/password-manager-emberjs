@@ -37,8 +37,15 @@ export default {
 	},
 	group:{
 		root: "All",
+		confirm: {
+			"delete": "Are you sure to delete {{group}} group?"
+		},
 		messages: {
-			"save-ok":"The group has been saved"
+			"save-ok":"The group has been saved",
+			"deleted-ok":"The group was deleted correctly"
+		},
+		errors:{
+			"with-children": "You cannot delete a group with childrens"
 		}
 	},
 	site:{
