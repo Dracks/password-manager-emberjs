@@ -21,7 +21,9 @@ module.exports = function(environment) {
 		},
 		i18n:{
 			defaultLocale: 'en'
-		}
+		},
+		userDefault: process.env.USER_DEFAULT,
+		passwordDefault: process.env.PASSWORD_DEFAULT
 	};
 
 	if (environment === 'development') {

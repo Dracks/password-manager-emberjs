@@ -2,12 +2,14 @@ import Ember from 'ember';
 //import { translationMacro as t } from "ember-i18n";
 //import Defaults from '../../../config/defaults'
 
+import ENV from "../config/environment"
+
 var LoginController = Ember.Controller.extend({
 	needs: 'user-session',
 	previousTransition: null,
 	i18n: Ember.inject.service(),
-	username:'',
-	password:'',
+	username:ENV.userDefault,
+	password:ENV.passwordDefault,
 
 	message: {
 		show:false,
