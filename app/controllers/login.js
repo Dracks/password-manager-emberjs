@@ -8,8 +8,8 @@ var LoginController = Ember.Controller.extend({
 	needs: 'user-session',
 	previousTransition: null,
 	i18n: Ember.inject.service(),
-	username:ENV.userDefault,
-	password:ENV.passwordDefault,
+	username:ENV.USER_DEFAULT,
+	password:ENV.PASSWORD_DEFAULT,
 
 	message: {
 		show:false,
