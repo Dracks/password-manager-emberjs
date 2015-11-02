@@ -28,7 +28,12 @@ module.exports = function(environment) {
 			defaultLocale: 'en'
 		},
 		userDefault: process.env.USER_DEFAULT,
-		passwordDefault: process.env.PASSWORD_DEFAULT
+		passwordDefault: process.env.PASSWORD_DEFAULT,
+		'ember-simple-auth':{
+			baseURL: 'oauth/',
+			routeAfterAuthentication: 'group',
+			routeIfAlreadyAuthenticated: 'group'
+		}
 	};
 
 	if (environment === 'test') {

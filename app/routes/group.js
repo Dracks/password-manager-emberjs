@@ -1,7 +1,6 @@
-import ProtectedRoute from './protected';
 import Ember from 'ember';
 
-export default ProtectedRoute.extend({
+export default Ember.Route.extend({
 	model: function (){
 		return new Ember.RSVP.Promise(function (resolve, reject){
 			var data;

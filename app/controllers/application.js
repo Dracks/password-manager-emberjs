@@ -2,8 +2,7 @@ import Ember from 'ember';
 import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Controller.extend({
-	needs:['UserSession'],
-	loggedIn: Ember.computed.alias('controllers.UserSession.loggedIn'),
+	session: Ember.inject.service('session'),
 	searchText:'',
 	placeHolderSearchText: '',
 	i18n: Ember.inject.service(),
@@ -25,6 +24,9 @@ export default Ember.Controller.extend({
 		goToSites: function (){
 			var text=this.get('searchText');
 			this.transitionToRoute('site', {queryParams:{search:text}});
+		},
+		logout (){
+			this.get('session').invalidate();
 		}
 	}
 });

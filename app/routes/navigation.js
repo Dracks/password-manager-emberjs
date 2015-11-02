@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ProtectedRoute from './protected';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default ProtectedRoute.extend({
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
 });

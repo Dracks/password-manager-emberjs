@@ -1,9 +1,5 @@
 // app/routes/application.js
 import Ember from "ember";
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-var Application=Ember.Route.extend({
-	afterModel: function() {
-		//this.set('i18n.locale', user.get('locale'));
-	}
-});
-export default Application;
+export default Ember.Route.extend(ApplicationRouteMixin);

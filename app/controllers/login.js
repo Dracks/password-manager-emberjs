@@ -5,8 +5,7 @@ import Ember from 'ember';
 import ENV from "../config/environment"
 
 var LoginController = Ember.Controller.extend({
-	needs: 'user-session',
-	previousTransition: null,
+	session: Ember.inject.service('session'),
 	i18n: Ember.inject.service(),
 	username:ENV.USER_DEFAULT,
 	password:ENV.PASSWORD_DEFAULT,
@@ -14,18 +13,6 @@ var LoginController = Ember.Controller.extend({
 	message: {
 		show:false,
 		message:""
-	},
-
-	loggedFunction: function (){
-		// Log the user in, then reattempt previous transition if it exists.
-		var previousTransition = this.get('previousTransition');
-		if (previousTransition) {
-			this.set('previousTransition', null);
-			previousTransition.retry();
-		} else {
-			// Default back to homepage
-			this.transitionToRoute('site');
-		}
 	},
 
 	actions: {
@@ -39,13 +26,10 @@ var LoginController = Ember.Controller.extend({
 			var username=this.get('username');
 			var password=this.get('password');
 			if (username.length>0 && password.length>0) {
-				var login_promise = this.get('controllers.user-session').login(username, password);
-				login_promise.then(function () {
-					this.loggedFunction();
-				}.bind(this), function (e) {
+				this.get('session').authenticate('authenticator:oauth2', username, password).catch(function (e) {
 					var msg=this.get('i18n').t('application.errors.connection-error');
-					if (e.responseText != '') {
-						msg= e.responseText;
+					if (e != '') {
+						msg= e;
 					}
 					this.set('message', {
 						show:true,
