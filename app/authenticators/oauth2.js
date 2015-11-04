@@ -4,7 +4,7 @@ import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-passwor
 import ENV from "../config/environment"
 
 export default OAuth2PasswordGrant.extend({
-	clientId: ['5y2UwmWUOkKXTh0U8a0OvS4m4j1zNLvAwqvlca0U', 'RPh1NpQv127EGJeyVQEbELN3IfV21WwtVJL761ubXXItgsuxiVJjHcdr858AUxn79gXyayI6kwQIlqib9K8iLzEUp3JUAXmmtrQnXV5DEuLulgdPe9OzSsQM4YSIj62r'],
+	clientId: [ENV.API_CLIENT_ID, ENV.API_CLIENT_SECRET],
 	serverTokenEndpoint: ENV.APP.API_HOST+'/oauth/token/',
 	serverTokenRevocationEndpoint: ENV.APP.API_HOST+'/oauth/revoke_token/',
 

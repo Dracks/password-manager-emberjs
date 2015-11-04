@@ -4,7 +4,14 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp({
 	dotEnv: {
-		clientAllowedKeys: ['USER_DEFAULT', 'PASSWORD_DEFAULT', 'BASE_URL', 'API_HOST', 'API_NAMESPACE']
+		clientAllowedKeys: [
+			'USER_DEFAULT',
+			'PASSWORD_DEFAULT',
+			'BASE_URL',
+			'API_HOST',
+			'API_NAMESPACE',
+			'API_CLIENT_ID',
+			'API_CLIENT_SECRET']
 	}
 });
 

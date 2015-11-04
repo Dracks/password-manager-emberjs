@@ -30,7 +30,6 @@ module.exports = function(environment) {
 		userDefault: process.env.USER_DEFAULT,
 		passwordDefault: process.env.PASSWORD_DEFAULT,
 		'ember-simple-auth':{
-			baseURL: 'oauth/',
 			routeAfterAuthentication: 'group',
 			routeIfAlreadyAuthenticated: 'group'
 		}
