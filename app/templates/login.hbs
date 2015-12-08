@@ -3,9 +3,9 @@
 
 	<form class="form-signin">
 		<h2 class="form-signin-heading">{{t "login.title"}}</h2>
-		{{#feedback-message isShowed=message.show timer=null type="error" hasCloseButton=false}}
+		{{#js-feedback-message isShowed=message.show timer=null type="error" hasCloseButton=false}}
 			{{message.text}}
-		{{/feedback-message}}
+		{{/js-feedback-message}}
 
 		<label for="identification">{{t "login.username"}}:</label>
 		{{view Ember.TextField value=username class="form-control" placeholder='User'}}

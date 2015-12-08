@@ -1,7 +1,7 @@
 <div class="col-md-4 col-sm-8 col-xs-12">
-	{{#feedback-message isShowed=message.show timer=message.timer type=message.type hasCloseButton=false}}
+	{{#js-feedback-message isShowed=message.show timer=message.timer type=message.type hasCloseButton=false}}
 		{{message.text}}
-	{{/feedback-message}}
+	{{/js-feedback-message}}
 	<label>{{t "site.group"}}:</label>
 	{{view "select" value=selectedGroup
 				optionLabelPath='content.path_name'

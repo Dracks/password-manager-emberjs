@@ -1,8 +1,10 @@
 {{#link-to 'site' (query-params group=model.id)  bubbles=false tagName="li" class="node"}}
+	{{#if (is-equal model.myPermission 3)}}
 	<div class="actions">
 		{{#link-to "group.edit" model bubbles=false class="text-primary edit"}}<span class="glyphicon glyphicon-pencil"></span>{{/link-to}}
 		<button {{action "remove" model bubbles=false}} class="text-danger edit"><span class="glyphicon glyphicon-remove"></span></button>
 	</div>
+	{{/if}}
 	{{#if has_children}}
 		<button {{action "expand" bubbles=false}} class="tree">
 			{{#if expanded}}
@@ -13,7 +15,7 @@
 		</button> {{model.name}}
 		{{#if expanded}}
 			<ul class="tree">
-				{{#each child in model.children}}
+				{{#each model.children as |child|}}
 					{{render "tree-node" child}}
 				{{/each}}
 			</ul>

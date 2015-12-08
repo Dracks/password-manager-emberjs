@@ -13,7 +13,7 @@ module.exports = function(environment) {
 			}
 		},
 		contentSecurityPolicy:{
-			'connect-src': process.env.API_HOST+" http://localhost:4200",
+			'connect-src': process.env.API_HOST+" http://localhost:4200 http://localhost:4100",
 			'style-src': "default-src style-src 'self' 'unsafe-inline'"
 		},
 

@@ -9,11 +9,13 @@ export default DS.Model.extend({
 		return this.get('children.length')!==0;
 	}.property('children.length'),
 	path_name: function (){
+		var name = this.get('name');
 		var path=this.get('parent.path_name');
 		if (path!==undefined){
-			return path+'>'+this.get('name');
+			return path+'>'+ name;
 		} else {
-			return this.get('name');
+			return name;
 		}
-	}.property('name', 'parent.path_name')
+	}.property('name', 'parent.path_name'),
+	myPermission: DS.attr('number')
 });

@@ -22,14 +22,8 @@ export default Ember.Controller.extend({
 		return list.filter(function(group){
 			return !(filter.contains(group.get('id')));
 		}).sortBy('path_name');
-	}.property('listGroups.content', 'model.id'),
-	parent: null,
-	observesParent: function (){
-		this.set('parent', this.get('model.parent'));
-	}.observes('model.parent'),
-	parentId: function (){
-		return this.get('model.parent.id');
-	}.property('model.parent.id'),
+	}.property('listGroups.content.[]', 'model.id'),
+	parent: Ember.computed.oneWay('model.parent'),
 	message: Ember.create({
 		show:false,
 		timer: 0,

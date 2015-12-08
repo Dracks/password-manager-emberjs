@@ -36,6 +36,7 @@
     "ember-django-adapter": "0.5.5",
     "ember-export-application-global": "^1.0.2",
     "ember-i18n": "4.0.0-beta.4",
+    "ember-jsingla-libs": "git@github.com:Dracks/Ember-jsingla-libs.git",
     "ember-simple-auth": "1.0.1"
   }
 }

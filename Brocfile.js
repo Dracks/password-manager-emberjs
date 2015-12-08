@@ -11,7 +11,11 @@ var app = new EmberApp({
 			'API_HOST',
 			'API_NAMESPACE',
 			'API_CLIENT_ID',
-			'API_CLIENT_SECRET']
+			'API_CLIENT_SECRET'],
+		path: {
+			development: '.env',
+			production: 'production.env'
+		}
 	}
 });
 
@@ -32,6 +36,9 @@ app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 
 app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
+	destDir: 'fonts'
+});
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
 	destDir: 'fonts'
 });
 
