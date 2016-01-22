@@ -3,34 +3,30 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
+	cache: Ember.inject.service(),
+	hasWriteAccess: function (){
+		var parent=this.get('model.parent');
+		if (parent){
+			return parent.get('myPermission')>=2;
+		}
+		return true;
+	}.property('model.parent.myPermission'),
 	message: {
 		show:false,
 		timer: null,
 		type: "info",
 		text: ""
 	},
-	init: function (){
-		this.store.find('group').then(function (data){
-			this.set('listGroups', data);
-		}.bind(this));
-	},
-	observesGroup: function (){
-		console.log('observesGroup');
-		this.set('selectedGroup', this.get('group'));
-	}.observes('model.group.id'),
-	listGroups: [],
-	listGroupsSorted: function (){
-		return this.get('listGroups').sortBy('path_name');
-	}.property('listGroups'),
-	group: function (){
-		var groupId=this.get('model.group.id');
-		var listGroups=this.get('listGroups');
-		var ret=listGroups.find(function (e){
-			return e.get('id')==groupId
-		});
-		return ret;
-	}.property('model.group.id', 'listGroups.content'),
-	selectedGroup: null,
+	listGroupsFiltered: function (){
+		var listGroups = this.get('cache.groupsList');
+		if (listGroups) {
+			return listGroups.filter(function(group){
+				console.log("Group:"+group.get('name')+" with "+group.get('myPermission'));
+				return group.get('myPermission')>=2;
+			}).sortBy('path_name');
+		}
+		return [];
+	}.property('listGroups', 'listGroups.@each.path_name'),
 	actions: {
 		save: function (){
 			this.set('message', {
@@ -47,7 +43,7 @@ export default Ember.Controller.extend({
 					timer: 10,
 					type: "info",
 					text: this.get('i18n').t('site.messages.save-ok', {})
-				})
+				});
 			}.bind(this), function (err){
 				console.log(err);
 				this.set('message', {
@@ -55,8 +51,8 @@ export default Ember.Controller.extend({
 					timer: null,
 					type: "error",
 					text: err
-				})
-			}.bind(this))
+				});
+			}.bind(this));
 		}
 	}
 });

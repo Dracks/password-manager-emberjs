@@ -3,13 +3,17 @@
 		{{message.text}}
 	{{/js-feedback-message}}
 	<label>{{t "site.group"}}:</label>
-	{{view "select" value=selectedGroup
-				optionLabelPath='content.path_name'
-				optionValuePath='content'
-				content=listGroupsSorted
-				prompt="Select group"
-				class="form-control"
-				}}<br/>
+	{{#if hasWriteAccess}}
+		{{js-select
+			selectedValue=model.group
+			content=listGroupsFiltered
+			label='path_name'
+			prompt="Select group"
+			class="form-control"
+			}}
+	{{else}}
+		<span>{{parent.path_name}}</span>
+	{{/if}}<br/>
 	<label>{{t "site.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
 	<label>{{t "site.description"}}:</label><br />{{textarea value=model.description class="form-control"}}<br />
 	<label>{{t "site.url"}}:</label>{{input type="text" value=model.url class="form-control"}}<br />

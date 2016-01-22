@@ -1,29 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+	cache: Ember.inject.service(),
 	model: function (){
 		return new Ember.RSVP.Promise(function (resolve, reject){
-			var data;
-			var totalData=[];
-			var callPage=function (page){
-				return this.store.find('group', {parent: null, page:page});
-			}.bind(this);
-			var resolveCallback=function (d){
-				totalData=totalData.concat(d.get('content'));
-				var next=data.get('content.meta.next');
-				if (next!==null){
-					data=callPage(next);
-					data.then(resolveCallback.bind(this), function (e){
-						reject(e);
-					});
-				} else {
-					resolve(totalData);
-				}
-			};
-			data=callPage(1);
-			data.then(resolveCallback.bind(this), function (e){
-				reject(e);
-			});
+			this.get('cache').get('groupsList').then(function (data){
+				resolve(data.filter(function (group){
+					return group.get('parent.content')===null;
+				}));
+			}.bind(this), reject);
 		}.bind(this));
 	}
 });

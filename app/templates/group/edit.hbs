@@ -3,16 +3,19 @@
 		{{message.text}}
 	{{/js-feedback-message}}
 	<label>{{t "application.names.parent"}}:</label>
-
+	{{#if hasWriteAccess}}
 		{{js-select
 			selectedValue=parent
-			content=listGroups
+			content=listGroupsFiltered
 			label='path_name'
 			prompt="Select group"
 			class="form-control"
 		}}
+	{{else}}
+		<span>{{parent.path_name}}</span>
+	{{/if}}
 
 		<br/>
-	<label>{{t "application.names.name"}}:</label>{{input type="text" value=model.name class="form-control"}}<br />
-	<button {{action "save"}} class="btn btn-primary">{{t "application.actions.save"}}</button>
+	<label>{{t "application.names.name"}}:</label>{{input type="text" value=model.name class="form-control" disabled=hasNtWriteAccess}}<br />
+	<button {{action "save"}} class="btn btn-primary" disabled={{hasNtWriteAccess}}>{{t "application.actions.save"}}</button>
 </div>

@@ -2,14 +2,18 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	listGroups: function (){
-		return this.store.find('group');
-	}.property(),
+	cache: Ember.inject.service(),
+	hasWriteAccess: Ember.computed('model.myPermission', function (){
+		return this.get('model.myPermission')>=3;
+	}),
+	hasNtWriteAccess: Ember.computed('hasWriteAccess', function (){
+		return !this.get('hasWriteAccess');
+	}),
 	listGroupsFiltered: function (){
 		var model=this.get('model');
 		var pending=[model];
 		var filter=[];
-		var list=this.get('listGroups');
+		var list=this.get('cache.groupsList');
 		var addChildToPending= function (child){
 			pending.push(child);
 		};
@@ -20,9 +24,9 @@ export default Ember.Controller.extend({
 			fetch.get('children').forEach(addChildToPending);
 		}
 		return list.filter(function(group){
-			return !(filter.contains(group.get('id')));
+			return !(filter.contains(group.get('id'))) && group.get('myPermission')>=3;
 		}).sortBy('path_name');
-	}.property('listGroups.content.[]', 'model.id'),
+	}.property('listGroups.@each.path_name', 'model.id'),
 	parent: Ember.computed.oneWay('model.parent'),
 	message: Ember.create({
 		show:false,
