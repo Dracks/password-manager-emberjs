@@ -11,7 +11,10 @@ var app = new EmberApp({
 			'API_HOST',
 			'API_NAMESPACE',
 			'API_CLIENT_ID',
-			'API_CLIENT_SECRET'],
+			'API_CLIENT_SECRET',
+			'CRYPTO_KEY',
+			'CRYPTO_IV'
+		],
 		path: {
 			development: '.env',
 			production: 'production.env'

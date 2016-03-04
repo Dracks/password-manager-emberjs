@@ -2,7 +2,7 @@ import Ember from 'ember';
 //import { translationMacro as t } from "ember-i18n";
 //import Defaults from '../../../config/defaults'
 
-import ENV from "../config/environment"
+import ENV from "../config/environment";
 
 var LoginController = Ember.Controller.extend({
 	session: Ember.inject.service('session'),

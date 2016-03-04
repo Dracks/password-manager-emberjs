@@ -16,7 +16,8 @@ Router.map(function () {
 				this.route('new', {path: '/new'});
 			});
 		});
-	})
+		this.resource('admin');
+	});
 });
 
 export default Router;
