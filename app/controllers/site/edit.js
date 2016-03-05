@@ -9,7 +9,10 @@ export default Ember.Controller.extend({
 	decypherPassword: '',
 	modelObserve: function (){
 		this.set('showPassword', false);
-		this.set('decypherPassword', '');
+		var model=this.get('model');
+		model.get('cypherType').decrypt(model.get('password')).then(function (password){
+			this.set('decypherPassword', password);
+		}.bind(this));
 	}.observes('model.id'),
 	hasWriteAccess: function (){
 		var parent=this.get('model.parent');
@@ -56,10 +59,6 @@ export default Ember.Controller.extend({
 	actions: {
 		showPassword: function (){
 			this.set('showPassword', true);
-			var model = this.get('model');
-			model.get('cypherType').decrypt(model.get('password')).then(function (password){
-				this.set('decypherPassword', password);
-			}.bind(this));
 		},
 		save: function (){
 			this.set('message', {

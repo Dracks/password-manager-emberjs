@@ -58,6 +58,10 @@ export default {
 		url: 'Url',
 		messages: {
 			"save-ok":"The site has been saved"
+		},
+		edit: {
+			"show-password": "Show password",
+			"copy-password": "Copy password"
 		}
 	}
 };
