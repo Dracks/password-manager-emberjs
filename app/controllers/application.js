@@ -22,8 +22,15 @@ export default Ember.Controller.extend({
 
 	actions: {
 		goToSites: function (){
-			var text=this.get('searchText');
-			this.transitionToRoute('site', {queryParams:{search:text}});
+			this.get('searchResults').then(function (data){
+				if (data.content.length==1){
+					this.transitionToRoute('site.edit', data.content[0].get('id'));
+					this.set('searchText', '');
+				} else {
+					var text=this.get('searchText');
+					this.transitionToRoute('site', {queryParams:{search:text}});
+				}
+			}.bind(this));
 		},
 		logout (){
 			this.get('session').invalidate();
