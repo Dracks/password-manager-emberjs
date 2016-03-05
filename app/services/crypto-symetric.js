@@ -72,7 +72,9 @@ export default Ember.Service.extend({
 					name: "AES-CBC",
 					iv: vector
 				}, key, StringUtils.convertToArrayBufferView(data)).then(function (data){
-					resolve(btoa(StringUtils.convertFromArrayBufferView(data)))
+					var arrayBuffer=new Uint8Array(data);
+					var string=StringUtils.convertFromArrayBufferView(arrayBuffer);
+					resolve(btoa(string))
 				}, function (error){
 					console.log(error);
 					reject(error)
@@ -85,13 +87,25 @@ export default Ember.Service.extend({
 		var crypto = this.get('crypto');
 
 		return new Ember.RSVP.Promise(function (resolve, reject) {
-			var crypto = this.get('crypto');
-			var key = this.get('currentKey');
-			var vector = this.get('currentIv');
-			var promise = crypto.subtle.decrypt({name: "AES-CBC", iv: vector}, key, StringUtils.convertToArrayBufferView(atob(encData)));
-			promise.then(function (data) {
-				resolve(StringUtils.convertFromArrayBufferView(data))
-			},reject);
+			this.get('currentKey').then(function (key) {
+				var crypto = this.get('crypto');
+				var vector = this.get('currentIv');
+				var promise = crypto.subtle.decrypt({
+					name: "AES-CBC",
+					iv: vector
+				}, key, StringUtils.convertToArrayBufferView(atob(encData)));
+				promise.then(function (data) {
+					var arrayBuffer=new Uint8Array(data);
+					var string=StringUtils.convertFromArrayBufferView(arrayBuffer);
+					resolve(string)
+				}, function (error){
+					console.log(error);
+					reject(error);
+				});
+			}.bind(this), function (error){
+				console.log(error);
+				reject(error);
+			});
 		}.bind(this));
 	}
 });

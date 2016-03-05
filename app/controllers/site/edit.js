@@ -69,7 +69,7 @@ export default Ember.Controller.extend({
 				text: ""
 			});
 			var model = this.get('model');
-			model.set('group', this.get('selectedGroup'));
+			//model.set('group', this.get('selectedGroup'));
 			if (this.get('showPassword')){
 				var cypher = this.get('newCypher');
 				model.set('cypherType', cypher);
