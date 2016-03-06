@@ -60,3 +60,8 @@ Specify what it takes to deploy your app.
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
+## Todo
+1. Change the group edition working, to work fine with the selector.
+2. Implement the public/private key system. using keys on groups, and keys for user.
+3. Refactor views to use components.
+4. Refactor routes deleting the architecture of childs, in Sites/list and Site edit/new.
